@@ -14,6 +14,8 @@ public class FriendListController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		request.setCharacterEncoding("utf-8");
+		
 		MemberDAO dao = new MemberDAO();
 		HttpSession session = request.getSession();
 		String s_no = (String) session.getAttribute("no");

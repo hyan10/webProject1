@@ -23,7 +23,9 @@ public class APILoginController implements Controller{
 		System.out.println(request.getParameter("memberId"));
 		System.out.println(request.getParameter("memberName"));
 		
-		if(dao.selectById(member.getId())){
+		MemberVO memberVO = dao.selectById(member.getId());
+		
+		if(memberVO!=null){
 			System.out.println("기존 회원");
 		}else {
 			System.out.println("새로운 회원");
@@ -35,11 +37,14 @@ public class APILoginController implements Controller{
 		}
 
 		HttpSession session = request.getSession();
-		session.setAttribute("member", member);
+		session.setAttribute("member", memberVO);
 		
 		System.out.println((MemberVO)session.getAttribute("member"));
 		
-		return "/jsp/APILogin.jsp";
+		
+		////////////////////////// 메인 페이지로 이동
+		return "/jsp/apiLogin.jsp";
+	//	return request.getContextPath();
 	}
 
 }

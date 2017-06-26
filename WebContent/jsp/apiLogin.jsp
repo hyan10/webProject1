@@ -6,9 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <script>
+	window.onload = function(){
+		window.location.href = "<%=request.getContextPath()%>/friendList.do";
+	}
 </script>
 </head>
 <body>
-	${sessionScope.member.id}
 </body>
 </html>

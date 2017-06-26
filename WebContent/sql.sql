@@ -8,7 +8,7 @@ CREATE TABLE t_member
     password    VARCHAR2(20)    NULL, 
     name        VARCHAR2(20)    NOT NULL, 
     tel         VARCHAR2(20), 
-    balance     NUMBER,
+    balance     NUMBER default 0,
     email       VARCHAR2(20),
     CONSTRAINT MEMBER_PK PRIMARY KEY (no)
 )
@@ -119,13 +119,15 @@ CREATE TABLE t_deal_history
     money          NUMBER           NOT NULL, 
     start_date     DATE             NOT NULL, 
     end_date       DATE             NOT NULL, 
-    comment        VARCHAR2(100)    NOT NULL, 
+    comments        VARCHAR2(100)    NOT NULL, 
     CONSTRAINT t_DEAL_HISTORY_PK PRIMARY KEY (no)
 )
 /
 
 COMMENT ON TABLE t_deal_history IS '완료된 거래내역'
 /
+
+create sequence t_deal_history_seq
 
 
 -- m_group_list Table Create SQL
@@ -163,6 +165,7 @@ ALTER TABLE t_chat
 /
 
 select * from t_member
+select * from t_deal_history
 
 select * from t_member where no in
 		(select friend_no from t_friend
@@ -173,3 +176,9 @@ from t_member m join t_friend f on m.no=f.member_no and f.member_no=m.no
 where m.no=1
 
 delete from t_member where no=23
+
+update t_member set balance=0 where no=25;
+
+insert into t_friend values(25, 1)
+insert into t_friend values(25, 2)
+insert into t_friend values(25, 4)

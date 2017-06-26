@@ -1,20 +1,33 @@
-<%@page import="kr.co.bit.project.vo.MemberVO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.co.bit.project.dao.MemberDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ƒ£±∏∏Ò∑œ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ÏπúÍµ¨Î™©Î°ù</title>
+<script>
+	function update(no){
+	//	$('#no').val(no);
+		var input_no = document.getElementById("no");
+		input_no.value = no;
+		console.log(input_no.value);
+		document.form.submit();
+	}
+	
+	function add(){
+		location.href = "<%=request.getContextPath()%>/insertFriend.do";
+	}
+</script>
 </head>
 <body>
+	<input type="button" value="Ï∂îÍ∞Ä" onclick="add()"/>
+	
 	<table border="1">
-		<tr>
+		<tr> 
 			<th>ID</th>
-			<th>¿Ã∏ß</th>
+			<th>Ïù¥Î¶Ñ</th>
+			<th></th>
 			<th></th>
 		</tr>
 		
@@ -22,10 +35,15 @@
 			<tr>
 				<td>${member.id}</td>
 				<td>${member.name}</td>
-				<td><input type="button" value="º€±›"/></td>
+				<td><input type="button" value="ÏÜ°Í∏à" onclick="update(${member.no})"/></td>
+				<td><input type="button" value="Ï™ºÍ∏∞" onclick=""/></td>
 			</tr>
-		</c:forEach>
-		
+		</c:forEach>		
 	</table>
+		<form action="<%=request.getContextPath()%>/sendMoney.do" name="form" method="post">
+			<input type="hidden" id="no" name="no"/>
+			<input type="text" name="comments"/>
+			<input type="text" name="money"/>
+		</form>
 </body>
 </html>

@@ -75,8 +75,8 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public boolean selectById(String id){
-		boolean result = false;
+	public MemberVO selectById(String id){
+		MemberVO result = null;
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from t_member ");
@@ -91,6 +91,45 @@ public class MemberDAO {
 			ResultSet rs = st.executeQuery();
 			
 			if(rs.next()){
+				result = new MemberVO();
+				result.setNo(rs.getInt("no"));
+				result.setId(rs.getString("id"));
+				result.setName(rs.getString("name"));
+				result.setTel(rs.getString("tel"));
+				result.setEmail(rs.getString("email"));
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public boolean updateMoney(boolean plus, int no, int money){
+		boolean result = false;
+		String check = "+";
+		
+		if(!plus){
+			check = "-";
+		}
+		
+		System.out.println(check);
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("update t_member set balance = balance "+check+" ? ");
+		sql.append(" where no=?");
+		
+		System.out.println(sql.toString());
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement st = conn.prepareStatement(sql.toString());
+		){
+			st.setInt(1, money);
+			st.setInt(2, no);
+			
+			if(st.executeUpdate()>0){
 				result = true;
 			}
 			

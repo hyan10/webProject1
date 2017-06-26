@@ -36,7 +36,7 @@
   			var user = result.user;
   			// ...
   			console.log(token);
-  				alert(token);
+  		//		alert(token);
   			console.log(user);
   			console.log(user.displayName);
   			console.log(user.email);
