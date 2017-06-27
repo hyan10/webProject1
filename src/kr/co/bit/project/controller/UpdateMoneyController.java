@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.bit.project.dao.MemberDAO;
 
-public class AddMoneyController implements Controller {
+public class UpdateMoneyController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

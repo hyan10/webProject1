@@ -1,67 +1,98 @@
 package kr.co.bit.project.vo;
 
 public class Deal {
+
 	private int no;
-    private String comments;
-    private int senderNo;
-    private int receiverNo;
-    private int money;
-    private String startDate;
-    private String endDate;
+	private String comments;
+	private int senderNo;
+	private int receiverNo;
+	private String senderId;
+	private String receiverId;
+	private int money;
+	private String startDate;
 
-    public int getNo() {
-        return no;
-    }
+	public Deal() {
+	}
 
-    public void setNo(int no) {
-        this.no = no;
-    }
+	public Deal(int no, String comments, int senderNo, int receiverNo, int money, String startDate) {
+		super();
+		this.no = no;
+		this.comments = comments;
+		this.senderNo = senderNo;
+		this.receiverNo = receiverNo;
+		this.money = money;
+		this.startDate = startDate;
+	}
 
-    public String getComments() {
-        return comments;
-    }
+	public int getNo() {
+		return no;
+	}
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
+	public void setNo(int no) {
+		this.no = no;
+	}
 
-    public int getSenderNo() {
-        return senderNo;
-    }
+	public String getComments() {
+		return comments;
+	}
 
-    public void setSenderNo(int senderNo) {
-        this.senderNo = senderNo;
-    }
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
-    public int getReceiverNo() {
-        return receiverNo;
-    }
+	public int getSenderNo() {
+		return senderNo;
+	}
 
-    public void setReceiverNo(int receiverNo) {
-        this.receiverNo = receiverNo;
-    }
+	public void setSenderNo(int senderNo) {
+		this.senderNo = senderNo;
+	}
 
-    public int getMoney() {
-        return money;
-    }
+	public int getReceiverNo() {
+		return receiverNo;
+	}
 
-    public void setMoney(int money) {
-        this.money = money;
-    }
+	public void setReceiverNo(int receiverNo) {
+		this.receiverNo = receiverNo;
+	}
 
-    public String getStartDate() {
-        return startDate;
-    }
+	public String getSenderId() {
+		return senderId;
+	}
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
+	public void setSenderId(String senderId) {
+		this.senderId = senderId;
+	}
 
-    public String getEndDate() {
-        return endDate;
-    }
+	public String getReceiverId() {
+		return receiverId;
+	}
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
+	public void setReceiverId(String receiverId) {
+		this.receiverId = receiverId;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Deal [no=" + no + ", comments=" + comments + ", senderNo=" + senderNo + ", receiverNo=" + receiverNo
+				+ ", senderId=" + senderId + ", receiverId=" + receiverId + ", money=" + money + ", startDate="
+				+ startDate + "]";
+	}
+
 }

@@ -166,6 +166,8 @@ ALTER TABLE t_chat
 
 select * from t_member
 select * from t_deal_history
+select * from t_friend
+select * from t_deal_list
 
 select * from t_member where no in
 		(select friend_no from t_friend
@@ -178,7 +180,10 @@ where m.no=1
 delete from t_member where no=23
 
 update t_member set balance=0 where no=25;
+update t_member set name='±èÇÏ¾á' where no=25;
 
 insert into t_friend values(25, 1)
 insert into t_friend values(25, 2)
 insert into t_friend values(25, 4)
+
+create sequence t_deal_list_seq

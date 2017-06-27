@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script>
-	window.onload = function(){
-		window.location.href = "<%=request.getContextPath()%>/friendList.do";
-	}
-</script>
 </head>
 <body>
+	<form action="<%=request.getContextPath()%>/updateMoney.do" name="form" method="post">
+		<input type="hidden" name="no" value="${loginUser.no}" />
+		<input type="text" name="money" />
+		<input type="submit" value="돈충전" />
+	</form>
 </body>
 </html>

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.bit.project.dao.DealDAO;
 import kr.co.bit.project.dao.MemberDAO;
 import kr.co.bit.project.vo.Deal;
-import kr.co.bit.project.vo.MemberVO;
+import kr.co.bit.project.vo.Member;
 
 public class SendMoneyController implements Controller{
 
@@ -18,6 +18,7 @@ public class SendMoneyController implements Controller{
 		HttpSession session = request.getSession();
 		
 		String s_no = request.getParameter("no");
+		s_no = "1";
 		String s_money = request.getParameter("money");
 		String comments = request.getParameter("comments");
 		int receiverNo = 0, money = 0;
@@ -25,11 +26,11 @@ public class SendMoneyController implements Controller{
 		if(s_no!=null || !s_no.equals("")){
 			receiverNo = Integer.parseInt(s_no);
 			
-			if(s_money!=null || !s_money.equals("")){
+			if(s_money!=null && !s_money.equals("")){
 				money = Integer.parseInt(s_money);
 				
 				MemberDAO dao = new MemberDAO();
-				int senderNo = ((MemberVO)session.getAttribute("member")).getNo();
+				int senderNo = ((Member)session.getAttribute("loginUser")).getNo();
 				
 				// 내 돈에서 출금 처리
 				if(dao.updateMoney(false, senderNo, money)){
@@ -48,7 +49,7 @@ public class SendMoneyController implements Controller{
 						deal.setEndDate("sysdate");*/
 						deal.setComments(comments);
 						System.out.println(comments);
-						if(d_dao.insert(deal)){
+						if(d_dao.insert(deal, 1)){
 							System.out.println("거래 내역에 추가됨");
 						}
 					}

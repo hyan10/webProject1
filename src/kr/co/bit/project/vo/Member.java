@@ -1,6 +1,6 @@
 package kr.co.bit.project.vo;
 
-public class MemberVO {
+public class Member {
 	private int no;
 	private String id;
 	private String password;
@@ -12,10 +12,10 @@ public class MemberVO {
 	
 	
 	
-	public MemberVO() {
+	public Member() {
 		super();
 	}
-	public MemberVO(int no, String id, String password, String name, String tel, int account, int balance,
+	public Member(int no, String id, String password, String name, String tel, int account, int balance,
 			String email) {
 		super();
 		this.no = no;

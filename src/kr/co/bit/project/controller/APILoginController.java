@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.bit.project.dao.MemberDAO;
-import kr.co.bit.project.vo.MemberVO;
+import kr.co.bit.project.vo.Member;
 
 public class APILoginController implements Controller{
 
@@ -15,7 +15,7 @@ public class APILoginController implements Controller{
 		request.setCharacterEncoding("utf-8");
 
 		MemberDAO dao = new MemberDAO();
-		MemberVO member = new MemberVO();
+		Member member = new Member();
 			
 		member.setId(request.getParameter("memberId"));
 		member.setName(request.getParameter("memberName"));
@@ -23,9 +23,9 @@ public class APILoginController implements Controller{
 		System.out.println(request.getParameter("memberId"));
 		System.out.println(request.getParameter("memberName"));
 		
-		MemberVO memberVO = dao.selectById(member.getId());
+		Member loginUser = dao.selectById(member.getId());
 		
-		if(memberVO!=null){
+		if(loginUser!=null){
 			System.out.println("기존 회원");
 		}else {
 			System.out.println("새로운 회원");
@@ -37,9 +37,9 @@ public class APILoginController implements Controller{
 		}
 
 		HttpSession session = request.getSession();
-		session.setAttribute("member", memberVO);
+		session.setAttribute("loginUser", loginUser);
 		
-		System.out.println((MemberVO)session.getAttribute("member"));
+		System.out.println((Member)session.getAttribute("loginUser"));
 		
 		
 		////////////////////////// 메인 페이지로 이동

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.bit.project.util.ConnectionFactory;
-import kr.co.bit.project.vo.MemberVO;
+import kr.co.bit.project.vo.Member;
 
 public class MemberDAO {
 
-	public List<MemberVO> friendList(int memberNo){
-		List<MemberVO> list = new ArrayList<>();
+	public List<Member> friendList(int memberNo){
+		List<Member> list = new ArrayList<>();
 	
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from t_member where no in ");
@@ -28,7 +28,7 @@ public class MemberDAO {
 			ResultSet rs = st.executeQuery();
 			
 			while(rs.next()){
-				MemberVO member = new MemberVO();
+				Member member = new Member();
 				member.setNo(rs.getInt("no"));
 				member.setId(rs.getString("id"));
 				member.setName(rs.getString("name"));
@@ -48,7 +48,7 @@ public class MemberDAO {
 	}
 	
 	
-	public boolean insert(MemberVO member){
+	public boolean insert(Member member){
 		boolean result = false;
 		
 		StringBuilder sql = new StringBuilder();
@@ -75,8 +75,8 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public MemberVO selectById(String id){
-		MemberVO result = null;
+	public Member selectById(String id){
+		Member result = null;
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from t_member ");
@@ -91,7 +91,7 @@ public class MemberDAO {
 			ResultSet rs = st.executeQuery();
 			
 			if(rs.next()){
-				result = new MemberVO();
+				result = new Member();
 				result.setNo(rs.getInt("no"));
 				result.setId(rs.getString("id"));
 				result.setName(rs.getString("name"));
@@ -136,6 +136,36 @@ public class MemberDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
+		return result;
+	}
+
+
+	public boolean insertFriend(int memberNo, int friendNo) {
+		boolean result = false;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into t_friend ");
+		sql.append(" values (?,?)");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement st = conn.prepareStatement(sql.toString());
+		){
+			int loc=1;
+			st.setInt(loc++, memberNo);
+			st.setInt(loc++, friendNo);
+			
+			System.out.println(sql.toString());
+			
+			if(st.executeUpdate()>0){
+				result = true;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		
 		return result;
 	}
